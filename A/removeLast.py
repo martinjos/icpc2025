@@ -4,22 +4,22 @@
 def removeLast(t):
     t=[t]
     h=1
-    a=zeros(1,size(t,1))
-    s=zeros(1,size(t,1))
-    #disp(t)
+    a=np.zeros(1,np.size(t,1))
+    s=np.zeros(1,np.size(t,1))
+    #print(t)
     counts=[]
-    for i=size(t,1):-1:1:
+    for i=np.size(t,1):-1:1:
         # find last candidate (left-chain node with no right child).
         # a candidate may only be traversed if its left child consists of only a single node.
         p=0; j=h
         sp=0
         count=1
-        while j~=0 && (t(j,1)~=0 || t(j,2)~=0):
+        while j!=0 and (t(j,1)!=0 or t(j,2)!=0):
             if t(j,2)==0:
                 # candidate
                 count=count+1
                 jj=t(j,1)
-                if t(jj,1)~=0 || t(jj,2)~=0:
+                if t(jj,1)!=0 or t(jj,2)!=0:
                     # left child has more than one node - traversal forbidden
                     break
                 # end
@@ -29,9 +29,9 @@ def removeLast(t):
             j=t(p,1)
         # end
         if j==0:
-            error('failed to complete - last left-chain node has a right child')
+            raise RuntimeError('failed to complete - last left-chain node has a right child')
         # end
-        #disp(count)
+        #print(count)
         counts=[counts count]
         # remove the node
         if j==h:
@@ -49,7 +49,7 @@ def removeLast(t):
         # end
         # store identity of removed node
         a(i)=j
-        #disp(t)
+        #print(t)
     # end
     return a
 # end

@@ -4,11 +4,11 @@ def checkRemoveBoth():
     r=removeBoth(t)
     t2=insert(r(1,:))
     t3=insert(r(2,:))
-    if ~all(t(:)==t2(:)):
-        error('First permutation is incorrect.')
+    if not np.all(t(:)==t2(:)):
+        raise RuntimeError('First permutation is incorrect.')
     # end
-    if ~all(t(:)==t3(:)):
-        error('Last permutation is incorrect.')
+    if not np.all(t(:)==t3(:)):
+        raise RuntimeError('Last permutation is incorrect.')
     # end
     s=timeit(@()removeBoth(t))
     return s

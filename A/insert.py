@@ -1,25 +1,25 @@
 # by mjos 2025-09-17
 def insert(a):
-    if ~all(sort(a) == 1:length(a)):
-        error('a is not a permutation of 1:length(a)')
+    if not np.all(np.sort(a) == 1:len(a)):
+        raise RuntimeError('a is not a permutation of 1:len(a)')
     # end
-    r=zeros(length(a),2) # result
+    r=np.zeros(len(a),2) # result
     h=0 # head
-    #disp(r)
-    for i=1:length(a):
+    #print(r)
+    for i=1:len(a):
         x=a(i) # number to insert
-        if h==0 || x<=h:
+        if h==0 or x<=h:
             # replace head
             r(x,1)=h
             h=x
         else:
             j=h
-            while j~=0:
+            while j!=0:
                 # swap order of children
                 k=r(j,2)
                 r(j,2)=r(j,1)
                 r(j,1)=k
-                if k==0 || x<=k:
+                if k==0 or x<=k:
                     # replace head of subtree
                     r(x,1)=k
                     r(j,1)=x
@@ -31,7 +31,7 @@ def insert(a):
                 # end
             # end
         # end
-        #disp(r)
+        #print(r)
     # end
     return r
 # end

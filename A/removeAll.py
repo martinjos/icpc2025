@@ -7,17 +7,17 @@ def removeAll(t,v):
     ts=[t]
     hs=[1]
     chs=[0]
-    s=zeros(1,size(t,1))
-    a=zeros(1,size(t,1))
+    s=np.zeros(1,np.size(t,1))
+    a=np.zeros(1,np.size(t,1))
     c=0
     q=1
     done=0
-    while ~done:
+    while not done:
         if hs(q)==0:
             # tree is empty - so count permutation
             c=c+1
             if bitand(v,1):
-                disp(a)
+                print(a)
             # end
         # end
         # find node to remove
@@ -31,7 +31,7 @@ def removeAll(t,v):
             p=0; j=hs(q)
             sp=0
             ch=0
-            while j~=0:
+            while j!=0:
                 if ts(j,2,q)==0:
                     # no right child - so this is a candidate
                     ch=ch+1
@@ -76,7 +76,7 @@ def removeAll(t,v):
             ts(k,1,q+1)=z
         # end
         # store identity of removed node
-        a(length(a)+1-q)=j
+        a(len(a)+1-q)=j
         q=q+1
     # end
     return c

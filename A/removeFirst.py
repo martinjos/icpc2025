@@ -4,20 +4,20 @@
 def removeFirst(t):
     t=[t]
     h=1
-    a=zeros(1,size(t,1))
-    s=zeros(1,size(t,1))
-    #disp(t)
-    for i=size(t,1):-1:1:
+    a=np.zeros(1,np.size(t,1))
+    s=np.zeros(1,np.size(t,1))
+    #print(t)
+    for i=np.size(t,1):-1:1:
         # find first left-chain node with no right child
         p=0; j=h
         sp=0
-        while j~=0 && t(j,2)~=0:
+        while j!=0 and t(j,2)!=0:
             p=j
             sp=sp+1; s(sp)=p
             j=t(p,1)
         # end
         if j==0:
-            error('failed to complete - every left-chain node has a right child')
+            raise RuntimeError('failed to complete - every left-chain node has a right child')
         # end
         # remove the node
         if j==h:
@@ -35,7 +35,7 @@ def removeFirst(t):
         # end
         # store identity of removed node
         a(i)=j
-        #disp(t)
+        #print(t)
     # end
     return a
 # end
