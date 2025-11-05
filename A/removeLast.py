@@ -1,26 +1,26 @@
-% by mjos 2025-09-18
-% remove the deepest left-chain node (repeatedly until empty).
-% leave t intact; just return ordered list of removed nodes.
+# by mjos 2025-09-18
+# remove the deepest left-chain node (repeatedly until empty).
+# leave t intact; just return ordered list of removed nodes.
 function a=removeLast(t)
     t=[t];
     h=1;
     a=zeros(1,size(t,1));
     s=zeros(1,size(t,1));
-    %disp(t);
+    #disp(t);
     counts=[];
     for i=size(t,1):-1:1
-        % find last candidate (left-chain node with no right child).
-        % a candidate may only be traversed if its left child consists of only a single node.
+        # find last candidate (left-chain node with no right child).
+        # a candidate may only be traversed if its left child consists of only a single node.
         p=0; j=h;
         sp=0;
         count=1;
         while j~=0 && (t(j,1)~=0 || t(j,2)~=0)
             if t(j,2)==0
-                % candidate
+                # candidate
                 count=count+1;
                 jj=t(j,1);
                 if t(jj,1)~=0 || t(jj,2)~=0
-                    % left child has more than one node - traversal forbidden
+                    # left child has more than one node - traversal forbidden
                     break;
                 end
             end
@@ -31,24 +31,24 @@ function a=removeLast(t)
         if j==0
             error('failed to complete - last left-chain node has a right child');
         end
-        %disp(count);
+        #disp(count);
         counts=[counts count];
-        % remove the node
+        # remove the node
         if j==h
             h=t(j,1);
         else
             t(p,1)=t(j,1);
         end
-        t(j,1)=0; % just for display
-        % swap all of the ancestors' children
+        t(j,1)=0; # just for display
+        # swap all of the ancestors' children
         while sp>0
             k=s(sp); sp=sp-1;
             z=t(k,2);
             t(k,2)=t(k,1);
             t(k,1)=z;
         end
-        % store identity of removed node
+        # store identity of removed node
         a(i)=j;
-        %disp(t);
+        #disp(t);
     end
 end
