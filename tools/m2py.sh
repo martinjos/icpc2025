@@ -10,3 +10,19 @@ gawk -i inplace '
     }
     { print }
 ' "$@"
+gawk -i inplace '
+    BEGIN { FS = "[ =]+" }
+    /^function +[a-zA-Z_][a-zA-Z_0-9]* *= */ {
+        retName = $2
+        sub(/^[^=]*= */, "def ")
+    }
+    /^function\>[^=]*$/ {
+        retName = "";
+    }
+    /^# end/ {
+        if (retName != "") {
+            print "    return " retName
+        }
+    }
+    { print }
+' "$@"

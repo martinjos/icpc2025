@@ -1,4 +1,4 @@
-function s=checkRemoveBoth():
+def checkRemoveBoth():
     p=randperm(2e5)
     t=insert(p)
     r=removeBoth(t)
@@ -11,4 +11,5 @@ function s=checkRemoveBoth():
         error('Last permutation is incorrect.')
     # end
     s=timeit(@()removeBoth(t))
+    return s
 # end

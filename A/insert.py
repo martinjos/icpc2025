@@ -1,5 +1,5 @@
 # by mjos 2025-09-17
-function r=insert(a):
+def insert(a):
     if ~all(sort(a) == 1:length(a)):
         error('a is not a permutation of 1:length(a)')
     # end
@@ -33,4 +33,5 @@ function r=insert(a):
         # end
         #disp(r)
     # end
+    return r
 # end

@@ -3,7 +3,7 @@
 # leave t intact; just return the number of permutations.
 # findings: on randperm(64), takes several seconds and finds 2^21 permutations.
 # number of permutations is always a power of 2 (even if input size is not).
-function c=removeAll(t,v):
+def removeAll(t,v):
     ts=[t]
     hs=[1]
     chs=[0]
@@ -79,4 +79,5 @@ function c=removeAll(t,v):
         a(length(a)+1-q)=j
         q=q+1
     # end
+    return c
 # end

@@ -1,7 +1,7 @@
 # by mjos 2025-09-18
 # remove the least deep left-chain node (repeatedly until empty).
 # leave t intact; just return ordered list of removed nodes.
-function a=removeFirst(t):
+def removeFirst(t):
     t=[t]
     h=1
     a=zeros(1,size(t,1))
@@ -37,4 +37,5 @@ function a=removeFirst(t):
         a(i)=j
         #disp(t)
     # end
+    return a
 # end
