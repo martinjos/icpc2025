@@ -7,22 +7,22 @@ def insert(a):
     h=0 # head
     #print(r)
     for i=1:len(a):
-        x=a(i) # number to insert
+        x=a[i] # number to insert
         if h==0 or x<=h:
             # replace head
-            r(x,1)=h
+            r[x,1]=h
             h=x
         else:
             j=h
             while j!=0:
                 # swap order of children
-                k=r(j,2)
-                r(j,2)=r(j,1)
-                r(j,1)=k
+                k=r[j,2]
+                r[j,2]=r[j,1]
+                r[j,1]=k
                 if k==0 or x<=k:
                     # replace head of subtree
-                    r(x,1)=k
-                    r(j,1)=x
+                    r[x,1]=k
+                    r[j,1]=x
                     # done inserting x
                     j=0
                 else:

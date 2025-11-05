@@ -11,30 +11,30 @@ def removeFirst(t):
         # find first left-chain node with no right child
         p=0; j=h
         sp=0
-        while j!=0 and t(j,2)!=0:
+        while j!=0 and t[j,2]!=0:
             p=j
-            sp=sp+1; s(sp)=p
-            j=t(p,1)
+            sp=sp+1; s[sp]=p
+            j=t[p,1]
         # end
         if j==0:
             raise RuntimeError('failed to complete - every left-chain node has a right child')
         # end
         # remove the node
         if j==h:
-            h=t(j,1)
+            h=t[j,1]
         else:
-            t(p,1)=t(j,1)
+            t[p,1]=t[j,1]
         # end
-        t(j,1)=0 # just for display
+        t[j,1]=0 # just for display
         # swap all of the ancestors' children
         while sp>0:
-            k=s(sp); sp=sp-1
-            z=t(k,2)
-            t(k,2)=t(k,1)
-            t(k,1)=z
+            k=s[sp]; sp=sp-1
+            z=t[k,2]
+            t[k,2]=t[k,1]
+            t[k,1]=z
         # end
         # store identity of removed node
-        a(i)=j
+        a[i]=j
         #print(t)
     # end
     return a

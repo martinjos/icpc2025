@@ -13,7 +13,7 @@ def removeAll(t,v):
     q=1
     done=0
     while not done:
-        if hs(q)==0:
+        if hs[q]==0:
             # tree is empty - so count permutation
             c=c+1
             if bitand(v,1):
@@ -24,26 +24,26 @@ def removeAll(t,v):
         # will break unless backtracking
         while 1:
             # lay foundation for next stage
-            ts(:,:,q+1)=ts(:,:,q)
-            hs(q+1)=hs(q)
-            chs(q+1)=0
+            ts[:,:,q+1]=ts[:,:,q]
+            hs[q+1]=hs[q]
+            chs[q+1]=0
             # find next left-chain node with no right child, or backtrack
-            p=0; j=hs(q)
+            p=0; j=hs[q]
             sp=0
             ch=0
             while j!=0:
-                if ts(j,2,q)==0:
+                if ts[j,2,q]==0:
                     # no right child - so this is a candidate
                     ch=ch+1
-                    if ch>chs(q):
-                        chs(q)=ch
+                    if ch>chs[q]:
+                        chs[q]=ch
                         break
                     # end
                 # end
                 # enter left child of node j
                 p=j
-                sp=sp+1; s(sp)=p
-                j=ts(p,1,q)
+                sp=sp+1; s[sp]=p
+                j=ts[p,1,q]
             # end
             if j==0:
                 # backtrack
@@ -62,18 +62,18 @@ def removeAll(t,v):
             break
         # end
         # remove the node
-        if j==hs(q):
-            hs(q+1)=ts(j,1,q)
+        if j==hs[q]:
+            hs[q+1]=ts[j,1,q]
         else:
-            ts(p,1,q+1)=ts(j,1,q)
+            ts[p,1,q+1]=ts[j,1,q]
         # end
-        ts(j,1,q+1)=0 # just for display
+        ts[j,1,q+1]=0 # just for display
         # swap all of the ancestors' children
         while sp>0:
-            k=s(sp); sp=sp-1
-            z=ts(k,2,q+1)
-            ts(k,2,q+1)=ts(k,1,q+1)
-            ts(k,1,q+1)=z
+            k=s[sp]; sp=sp-1
+            z=ts[k,2,q+1]
+            ts[k,2,q+1]=ts[k,1,q+1]
+            ts[k,1,q+1]=z
         # end
         # store identity of removed node
         a(len(a)+1-q)=j
