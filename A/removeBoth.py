@@ -1,3 +1,3 @@
-function r=removeBoth(t)
+function r=removeBoth(t):
     r=[removeLast(t); removeFirst(t)]
-end
+# end
