@@ -1,14 +1,14 @@
 function s=checkRemoveBoth()
-    p=randperm(2e5);
-    t=insert(p);
-    r=removeBoth(t);
-    t2=insert(r(1,:));
-    t3=insert(r(2,:));
+    p=randperm(2e5)
+    t=insert(p)
+    r=removeBoth(t)
+    t2=insert(r(1,:))
+    t3=insert(r(2,:))
     if ~all(t(:)==t2(:))
-        error('First permutation is incorrect.');
+        error('First permutation is incorrect.')
     end
     if ~all(t(:)==t3(:))
-        error('Last permutation is incorrect.');
+        error('Last permutation is incorrect.')
     end
-    s=timeit(@()removeBoth(t));
+    s=timeit(@()removeBoth(t))
 end
