@@ -1,14 +1,21 @@
+#!/usr/bin/env python3
+
 # by mjos 2025-09-19
 # remove all left-chain nodes (repeatedly until empty).
 # leave t intact; just return the number of permutations.
 # findings: on randperm(64), takes several seconds and finds 2^21 permutations.
 # number of permutations is always a power of 2 (even if input size is not).
-def removeAll(t,v):
+
+import sys
+import numpy as np
+from insert import insert
+
+def removeAll(t,v=False):
     ts=np.array([t])
-    hs=[1]
-    chs=[0]
-    s=np.zeros(1,np.size(t,1))
-    a=np.zeros(1,np.size(t,1))
+    hs=np.array([1])
+    chs=np.array([0])
+    s=np.zeros((np.size(t,0)-1,), dtype=int)
+    a=np.zeros((np.size(t,0)-1,), dtype=int)
     c=0
     q=0
     done=False
@@ -16,7 +23,7 @@ def removeAll(t,v):
         if hs[q]==0:
             # tree is empty - so count permutation
             c=c+1
-            if (v & 1) != 0:
+            if v:
                 print(a)
             # end
         # end
@@ -26,11 +33,13 @@ def removeAll(t,v):
             # lay foundation for next stage
             ts.resize((q+2,)+ts.shape[1:])
             ts[q+1,:,:]=ts[q,:,:]
+            hs.resize((q+2,))
             hs[q+1]=hs[q]
+            chs.resize((q+2,))
             chs[q+1]=0
             # find next left-chain node with no right child, or backtrack
             p=0; j=hs[q]
-            sp=0
+            sp=-1
             ch=0
             while j!=0:
                 if ts[q,j,1]==0:
@@ -70,7 +79,7 @@ def removeAll(t,v):
         # end
         ts[q+1,j,0]=0 # just for display
         # swap all of the ancestors' children
-        while sp>0:
+        while sp>-1:
             k=s[sp]; sp=sp-1
             z=ts[q+1,k,1]
             ts[q+1,k,1]=ts[q+1,k,0]
@@ -81,4 +90,17 @@ def removeAll(t,v):
         q=q+1
     # end
     return c
+# end
+
+def main(n=int(10)):
+    n = int(n)
+    rng = np.random.default_rng()
+    a=rng.permutation(range(1,n+1))
+    t=insert(a)
+    c=removeAll(t,True)
+    print(c)
+# end
+
+if __name__ == '__main__':
+    main(*sys.argv[1:])
 # end
