@@ -1,10 +1,15 @@
+#!/usr/bin/python3
+
 # by mjos 2025-09-17
+
+import sys
 import numpy as np
+
 def insert(a):
     if not np.all(np.sort(a) == range(1, len(a)+1)):
-        raise RuntimeError('a is not a permutation of 1..len(a)')
+        raise RuntimeError(f'a is not a permutation of 1..len(a): {a}')
     # end
-    r=np.zeros(len(a)+1,2) # result
+    r=np.zeros((len(a)+1,2), dtype=int) # result
     h=0 # head
     #print(r)
     for x in a:
@@ -35,4 +40,18 @@ def insert(a):
         #print(r)
     # end
     return r
+# end
+
+def main(*a):
+    a = [int(x) for x in a]
+    if len(a) == 1 and a[0] != 1:
+        rng = np.random.default_rng()
+        a = rng.permutation(range(1, a[0]+1))
+    # end
+    r = insert(a)
+    print(r)
+# end
+
+if __name__ == '__main__':
+    main(*sys.argv[1:])
 # end
