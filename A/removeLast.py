@@ -1,18 +1,21 @@
 # by mjos 2025-09-18
 # remove the deepest left-chain node (repeatedly until empty).
 # leave t intact; just return ordered list of removed nodes.
+
+import numpy as np
+
 def removeLast(t):
-    t=[t]
+    t=t.copy()
     h=1
-    a=np.zeros(1,np.size(t,1))
-    s=np.zeros(1,np.size(t,1))
+    a=np.zeros((np.size(t,0)-1,), dtype=int)
+    s=np.zeros((np.size(t,0)-1,), dtype=int)
     #print(t)
     counts=[]
-    for i=np.size(t,1):-1:1:
+    for i in range(np.size(t,0)-2, -1, -1):
         # find last candidate (left-chain node with no right child).
         # a candidate may only be traversed if its left child consists of only a single node.
         p=0; j=h
-        sp=0
+        sp=-1
         count=1
         while j!=0 and (t[j,0]!=0 or t[j,1]!=0):
             if t[j,1]==0:
@@ -32,7 +35,7 @@ def removeLast(t):
             raise RuntimeError('failed to complete - last left-chain node has a right child')
         # end
         #print(count)
-        counts=[counts count]
+        counts.append(count)
         # remove the node
         if j==h:
             h=t[j,0]
@@ -41,7 +44,7 @@ def removeLast(t):
         # end
         t[j,0]=0 # just for display
         # swap all of the ancestors' children
-        while sp>0:
+        while sp>-1:
             k=s[sp]; sp=sp-1
             z=t[k,1]
             t[k,1]=t[k,0]
