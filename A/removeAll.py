@@ -10,7 +10,7 @@ def removeAll(t,v):
     s=np.zeros(1,np.size(t,1))
     a=np.zeros(1,np.size(t,1))
     c=0
-    q=1
+    q=0
     done=False
     while not done:
         if hs[q]==0:
@@ -49,7 +49,7 @@ def removeAll(t,v):
             if j==0:
                 # backtrack
                 q=q-1
-                if q==0:
+                if q==-1:
                     # failed to backtrack
                     break
                 # end
@@ -58,7 +58,7 @@ def removeAll(t,v):
                 break
             # end
         # end
-        if q==0:
+        if q==-1:
             # done - no more paths to a solution
             break
         # end
@@ -77,7 +77,7 @@ def removeAll(t,v):
             ts[q+1,k,0]=z
         # end
         # store identity of removed node
-        a[len(a)+1-q]=j
+        a[len(a)-1-q]=j
         q=q+1
     # end
     return c
