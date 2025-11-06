@@ -14,19 +14,19 @@ def removeLast(t):
         p=0; j=h
         sp=0
         count=1
-        while j!=0 and (t[j,1]!=0 or t[j,2]!=0):
-            if t[j,2]==0:
+        while j!=0 and (t[j,0]!=0 or t[j,1]!=0):
+            if t[j,1]==0:
                 # candidate
                 count=count+1
-                jj=t[j,1]
-                if t[jj,1]!=0 or t[jj,2]!=0:
+                jj=t[j,0]
+                if t[jj,0]!=0 or t[jj,1]!=0:
                     # left child has more than one node - traversal forbidden
                     break
                 # end
             # end
             p=j
             sp=sp+1; s[sp]=p
-            j=t[p,1]
+            j=t[p,0]
         # end
         if j==0:
             raise RuntimeError('failed to complete - last left-chain node has a right child')
@@ -35,17 +35,17 @@ def removeLast(t):
         counts=[counts count]
         # remove the node
         if j==h:
-            h=t[j,1]
+            h=t[j,0]
         else:
-            t[p,1]=t[j,1]
+            t[p,0]=t[j,0]
         # end
-        t[j,1]=0 # just for display
+        t[j,0]=0 # just for display
         # swap all of the ancestors' children
         while sp>0:
             k=s[sp]; sp=sp-1
-            z=t[k,2]
-            t[k,2]=t[k,1]
-            t[k,1]=z
+            z=t[k,1]
+            t[k,1]=t[k,0]
+            t[k,0]=z
         # end
         # store identity of removed node
         a[i]=j

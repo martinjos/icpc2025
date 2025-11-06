@@ -32,7 +32,7 @@ def removeAll(t,v):
             sp=0
             ch=0
             while j!=0:
-                if ts[j,2,q]==0:
+                if ts[j,1,q]==0:
                     # no right child - so this is a candidate
                     ch=ch+1
                     if ch>chs[q]:
@@ -43,7 +43,7 @@ def removeAll(t,v):
                 # enter left child of node j
                 p=j
                 sp=sp+1; s[sp]=p
-                j=ts[p,1,q]
+                j=ts[p,0,q]
             # end
             if j==0:
                 # backtrack
@@ -63,17 +63,17 @@ def removeAll(t,v):
         # end
         # remove the node
         if j==hs[q]:
-            hs[q+1]=ts[j,1,q]
+            hs[q+1]=ts[j,0,q]
         else:
-            ts[p,1,q+1]=ts[j,1,q]
+            ts[p,0,q+1]=ts[j,0,q]
         # end
-        ts[j,1,q+1]=0 # just for display
+        ts[j,0,q+1]=0 # just for display
         # swap all of the ancestors' children
         while sp>0:
             k=s[sp]; sp=sp-1
-            z=ts[k,2,q+1]
-            ts[k,2,q+1]=ts[k,1,q+1]
-            ts[k,1,q+1]=z
+            z=ts[k,1,q+1]
+            ts[k,1,q+1]=ts[k,0,q+1]
+            ts[k,0,q+1]=z
         # end
         # store identity of removed node
         a(len(a)+1-q)=j

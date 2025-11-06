@@ -11,19 +11,19 @@ def insert(a):
         # x = the number to insert
         if h==0 or x<=h:
             # replace head
-            r[x,1]=h
+            r[x,0]=h
             h=x
         else:
             j=h
             while j!=0:
                 # swap order of children
-                k=r[j,2]
-                r[j,2]=r[j,1]
-                r[j,1]=k
+                k=r[j,1]
+                r[j,1]=r[j,0]
+                r[j,0]=k
                 if k==0 or x<=k:
                     # replace head of subtree
-                    r[x,1]=k
-                    r[j,1]=x
+                    r[x,0]=k
+                    r[j,0]=x
                     # done inserting x
                     j=0
                 else:
