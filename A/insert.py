@@ -1,13 +1,14 @@
 # by mjos 2025-09-17
+import numpy as np
 def insert(a):
-    if not np.all(np.sort(a) == 1:len(a)):
-        raise RuntimeError('a is not a permutation of 1:len(a)')
+    if not np.all(np.sort(a) == range(1, len(a)+1)):
+        raise RuntimeError('a is not a permutation of 1..len(a)')
     # end
-    r=np.zeros(len(a),2) # result
+    r=np.zeros(len(a)+1,2) # result
     h=0 # head
     #print(r)
-    for i=1:len(a):
-        x=a[i] # number to insert
+    for x in a:
+        # x = the number to insert
         if h==0 or x<=h:
             # replace head
             r[x,1]=h
