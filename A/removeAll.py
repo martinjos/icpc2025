@@ -11,18 +11,18 @@ def removeAll(t,v):
     a=np.zeros(1,np.size(t,1))
     c=0
     q=1
-    done=0
+    done=False
     while not done:
         if hs[q]==0:
             # tree is empty - so count permutation
             c=c+1
-            if bitand(v,1):
+            if (v & 1) != 0:
                 print(a)
             # end
         # end
         # find node to remove
         # will break unless backtracking
-        while 1:
+        while True:
             # lay foundation for next stage
             ts.resize((q+2,)+ts.shape[1:])
             ts[q+1,:,:]=ts[q,:,:]
@@ -77,7 +77,7 @@ def removeAll(t,v):
             ts[q+1,k,0]=z
         # end
         # store identity of removed node
-        a(len(a)+1-q)=j
+        a[len(a)+1-q]=j
         q=q+1
     # end
     return c
