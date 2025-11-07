@@ -1,1 +1,6 @@
 __pycache__/
+*.o
+*.d
+*.bak
+/wasm/bridge.[ch]
+/wasm/test_insert

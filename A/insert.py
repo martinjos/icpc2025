@@ -9,7 +9,7 @@ def insert(a):
     if not np.all(np.sort(a) == range(1, len(a)+1)):
         raise RuntimeError(f'a is not a permutation of 1..len(a): {a}')
     # end
-    r=np.zeros((len(a)+1,2), dtype=int) # result
+    r=np.zeros((len(a)+1,2), dtype=np.int64) # result
     h=0 # head
     #print(r)
     for x in a:
